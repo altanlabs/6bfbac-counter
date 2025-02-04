@@ -1,12 +1,13 @@
-import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button"
-import { motion } from "framer-motion"
-import { ArrowRight } from "lucide-react"
-import { useNavigate } from "react-router-dom"
-
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+import { useState } from "react";
 
 export default function IndexPage() {
-  const navigate = useNavigate()
+  const [count, setCount] = useState(0);
+
+  const increment = () => setCount(count + 1);
+  const decrement = () => setCount(count - 1);
 
   return (
     <div className="container mx-auto px-4 py-16 space-y-32">
@@ -21,17 +22,14 @@ export default function IndexPage() {
           Welcome to Your New App
         </Badge>
         <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
-          Build Beautiful Interfaces
-          <br />
-          With Altan AI
+          Simple Counter
         </h1>
-        <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-          Start chatting to edit this app.
-        </p>
-        <Button size="lg" className="mt-4" onClick={() => navigate('/')}>
-          Cool button <ArrowRight className="ml-2 h-4 w-4" />
-        </Button>
+        <div className="flex justify-center items-center space-x-4 mt-8">
+          <Button onClick={decrement}>-</Button>
+          <span className="text-2xl font-semibold">{count}</span>
+          <Button onClick={increment}>+</Button>
+        </div>
       </motion.section>
     </div>
-  )
+  );
 }
